@@ -48,7 +48,7 @@ def main():
         sys.exit(0)
 
     #nav to page to pay for orders
-    driver.get('https://dropshipping.doba.com/v/purchaseOrders')
+    driver.get(PO_URL)
     print('nav to order page')
     time.sleep(5)
 
