@@ -87,10 +87,12 @@ def main():
     # select the doba pay option
     doba_pay_btn = long_wait(By.XPATH, '//div[contains(@class, "option")]//span[text()="Doba Credit"]')
     doba_pay_btn.click()
+    time.sleep(2)
 
     #input the payment passcode and submit
-    payment_passcode_el = long_wait(By.CSS_SELECTOR, 'div.payment-password input')
+    payment_passcode_el = driver.find_element(By.CSS_SELECTOR, 'div.payment-password input')
     payment_passcode_el.send_keys(PAYMENT_PASSCODE)
+    time.sleep(2)
 
     submit_btn = short_wait(By.CSS_SELECTOR, '.ant-btn.ant-btn-primary.ant-btn-lg')
     submit_btn.click()
