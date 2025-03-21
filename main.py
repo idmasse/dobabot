@@ -14,6 +14,7 @@ load_dotenv()
 
 LOGIN_URL = os.getenv('LOGIN_URL')
 PO_URL = os.getenv('PO_URL')
+PAYMENT_PASSCODE = os.getenv('PAYMENT_PASSCODE')
 
 def main():
     driver = get_driver() #init driver
@@ -59,6 +60,7 @@ def main():
         sys.exit(0)
     else:
         print('found unpaid orders, proceeding to payment flow')
+        time.sleep(2)
 
     # select all the orders on the page and scrape the order totals
     checkbox = long_wait(By.XPATH, "//div[contains(@class, 'patch-operate')]//span[text()='Select All']")
@@ -88,7 +90,7 @@ def main():
 
     #input the payment passcode and submit
     payment_passcode_el = long_wait(By.CSS_SELECTOR, 'div.payment-password input')
-    payment_passcode_el.send_keys(os.getenv('PAYMENT_PASSCODE'))
+    payment_passcode_el.send_keys(PAYMENT_PASSCODE)
 
     submit_btn = short_wait(By.CSS_SELECTOR, '.ant-btn.ant-btn-primary.ant-btn-lg')
     submit_btn.click()
