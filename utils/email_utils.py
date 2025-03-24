@@ -32,3 +32,26 @@ def send_email(subject, body):
         print(f"failed to send email: {e}")
     finally:
         server.quit()
+
+def send_email_to_jarek(subject, body):
+    sender_email = os.getenv('SENDER_EMAIL')
+    jareks_email = os.getenv('JAREKS_EMAIL')
+    email_password = os.getenv('EMAIL_PASSWORD')
+
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = jareks_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_email, email_password)
+        text = msg.as_string()
+        server.sendmail(sender_email, jareks_email, text)
+        print("Email sent successfully to Jarek.")
+    except Exception as e:
+        print(f"Failed to send email to Jarek: {e}")
+    finally:
+        server.quit()
