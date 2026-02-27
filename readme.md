@@ -86,7 +86,12 @@ When executed, the script performs the following actions:
 ## Project Structure
 
 - **`main.py`**  
-  Primary entry point containing the automation logic and workflow orchestration.
+  Primary entry point containing the automation logic and overall workflow orchestration.
+
+- **`utils/`**  
+  Shared utilities used across the automation workflow.
+  - **`selenium_setup.py`** – WebDriver initialization and browser configuration.
+  - **`email_utils.py`** – Helper functions for sending success, failure, and alert notifications.
 
 - **`com.doba.plist`**  
   macOS LaunchAgent configuration used to schedule automated runs via `launchd`.
